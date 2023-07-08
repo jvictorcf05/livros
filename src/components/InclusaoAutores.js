@@ -6,16 +6,16 @@ import { useState } from "react";
 //register serve para definir os nomes dos campos do form (validações)
 //handleSubmit, para indicar o método a ser acionado no evento onSubmit do form
 //form onSubmit={handleSubmit(salvar)}
-const InclusaoEditoras = () => {
+const InclusaoAutores = () => {
     const { register, handleSubmit } = useForm();
     const [aviso, setAviso] = useState("");
     //método chamado ao enviar form onSubmit
     const salvar = async (campos) => {
         try {
-            const response = await api.post("editoras", campos);
-            setAviso("Editora cadastrado com sucesso!")
+            const response = await api.post("autores", campos);
+            setAviso("Autor cadastrado com sucesso!")
         } catch (error) {
-            setAviso("Erro ao cadastrar Editora!");
+            setAviso("Erro ao cadastrar Autor!");
         }
 
 
@@ -24,10 +24,10 @@ const InclusaoEditoras = () => {
         //lá no html puro usavamos titulo.value para pegar valor
     }
     //aqui é o que vai ser exibido em tela
-    //nome, cidade, estado, telefone, rua, cep.
+    //nome, sobrenome, idade, data_nascimento, sexo, telefone
     return (
         <div className="container">
-            <h4 className="fst-italic mt-3">Editoras</h4>
+            <h4 className="fst-italic mt-3">Autores</h4>
             <form onSubmit={handleSubmit(salvar)}>
 
                 <div className="form-group">
@@ -37,15 +37,35 @@ const InclusaoEditoras = () => {
                 </div>
 
                 <div className="form-group mt-2">
-                    <label htmlFor="cidade">Cidade</label>
-                    <input type="text" className="form-control" id="cidade"
-                        required {...register("cidade")} />
+                    <label htmlFor="sobrenome">Sobrenome</label>
+                    <input type="text" className="form-control" id="sobrenome"
+                        required {...register("sobrenome")} />
                 </div>
 
                 <div className="form-group mt-2">
-                    <label htmlFor="estado">Estado:</label>
-                    <input type="text" className="form-control" id="estado"
-                        required {...register("estado")} />
+                    <label htmlFor="idade">Idade:</label>
+                    <input type="number" className="form-control" id="idade"
+                        required {...register("idade")} />
+                </div>
+
+                <div className="row mt-2">
+                    <div className="col-sm-4">
+                        <div className="form-group">
+                            <label htmlFor="data_nascimento">data_nascimento</label>
+                            <input type="date" className="form-control"
+                                id="data_nascimento" required {...register("data_nascimento")}></input>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="row mt-2">
+                    <div className="col-sm-4">
+                        <div className="form-group">
+                            <label htmlFor="sexo">Sexo</label>
+                            <input type="text" className="form-control"
+                                id="sexo" required {...register("sexo")}></input>
+                        </div>
+                    </div>
                 </div>
 
                 <div className="row mt-2">
@@ -58,27 +78,6 @@ const InclusaoEditoras = () => {
                     </div>
                 </div>
 
-                <div className="row mt-2">
-                    <div className="col-sm-4">
-                        <div className="form-group">
-                            <label htmlFor="rua">Rua</label>
-                            <input type="text" className="form-control"
-                                id="rua" required {...register("rua")}></input>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="row mt-2">
-                    <div className="col-sm-4">
-                        <div className="form-group">
-                            <label htmlFor="cep">CEP</label>
-                            <input type="text" className="form-control"
-                                id="cep" required {...register("cep")}></input>
-                        </div>
-                    </div>
-                </div>
-
-
 
                 <input type="submit" className="btn btn-primary mt-3"
                     value="Enviar" />
@@ -90,4 +89,4 @@ const InclusaoEditoras = () => {
     )
 }
 
-export default InclusaoEditoras;
+export default InclusaoAutores;
